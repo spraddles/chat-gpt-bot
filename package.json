@@ -1,0 +1,17 @@
+{
+  "name": "chat-gpt-bot",
+  "version": "1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "docker:build": "docker compose -f docker-compose.yml --env-file .env.local build",
+    "docker": "docker-compose -f docker-compose.yml --env-file .env.local up",
+    "docker:prune": "docker system prune",
+    "docker:purge": "sh ./scripts/docker-purge.sh && docker system prune -f"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

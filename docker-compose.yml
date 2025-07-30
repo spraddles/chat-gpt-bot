@@ -1,0 +1,25 @@
+services:
+
+  vue:
+    build:
+      context: ./docker/services/vue
+      dockerfile: dockerfile-vue
+    volumes:
+      - ./docker/services/vue:/app:cached
+      - vue_node_modules:/app/node_modules
+    ports:
+      - "${VITE_PORT:-5173}:${VITE_PORT:-5173}"
+    env_file: ./.env.local
+    environment:
+      VITE_PORT: ${VITE_PORT:-5173}
+    networks:
+      custom_network:
+    restart: unless-stopped
+
+networks:
+  custom_network:
+    name: docker_network
+    driver: bridge
+
+volumes:
+  vue_node_modules:
