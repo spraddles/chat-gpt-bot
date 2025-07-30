@@ -1,0 +1,36 @@
+# --- Dependencies & build artifacts ---
+node_modules/
+dist/
+dist-ssr/
+coverage/
+*.tsbuildinfo
+
+# --- Logs ---
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# --- Environment files ---
+.env
+.env.*
+!.env.example
+
+# --- OS files ---
+.DS_Store
+
+# --- Editors / IDEs ---
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.code-workspace
+
+# --- Project files (MS / others) ---
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
