@@ -14,10 +14,7 @@ RUN if [ -f package-lock.json ]; then \
 
 COPY . .
 
-ENV VITE_PORT=5173
 ENV CHOKIDAR_USEPOLLING=1
 ENV CHOKIDAR_INTERVAL=100
-
-EXPOSE 5173
 
 CMD ["sh", "-lc", "npm run dev -- --host --port ${VITE_PORT}"]

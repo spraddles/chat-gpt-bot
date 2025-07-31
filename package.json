@@ -7,8 +7,8 @@
     "node": "^20.19.0 || >=22.12.0"
   },
   "scripts": {
-    "docker:build": "docker compose -f docker-compose.yml --env-file .env.local build",
-    "docker": "docker-compose -f docker-compose.yml --env-file .env.local up",
+    "docker:build": "docker compose -f docker-compose.yml build",
+    "docker": "docker-compose -f docker-compose.yml up",
     "docker:prune": "docker system prune",
     "docker:purge": "sh ./scripts/docker-purge.sh && docker system prune -f"
   },
