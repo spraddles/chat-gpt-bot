@@ -30,7 +30,7 @@ const { sendChat } = store
 
 const messages = ref([
   { position: "left", content: "Welcome to your personal GPT!" },
-  { position: "left", content: "I am built using a simple Open-Source GPT Model - EleutherAI/gpt-neo-125M, so I'm not very smart 😅" },
+  { position: "left", content: "Please go easy on me, I only have a small model open-source model (EleutherAI/gpt-neo-125M), so I'm not very smart 😅" },
 ])
 
 const prompt = ref("")
