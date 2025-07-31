@@ -18,6 +18,7 @@ def chat(req: ChatRequest):
         outputs = model.generate(
             **inputs,
             max_length=req.max_length,
+            do_sample=True,
             temperature=req.temperature,
             top_p=req.top_p,
             pad_token_id=tokenizer.eos_token_id,
