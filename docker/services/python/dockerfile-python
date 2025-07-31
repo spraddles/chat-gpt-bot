@@ -11,6 +11,16 @@ COPY requirements.txt .
 RUN python -m pip install --upgrade pip && \
     pip install -r requirements.txt
 
+# download model
+RUN python - << 'EOF'
+from transformers import AutoTokenizer, AutoModelForCausalLM
+MODEL = "EleutherAI/gpt-neo-125M"
+print(f"Downloading {MODEL}...")
+AutoTokenizer.from_pretrained(MODEL)
+AutoModelForCausalLM.from_pretrained(MODEL)
+print("Model download complete!")
+EOF
+
 COPY . .
 
 CMD ["sh", "-lc", "uvicorn app.main:app --host 0.0.0.0 --port ${PY_PORT} --reload"]
