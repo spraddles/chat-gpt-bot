@@ -30,7 +30,7 @@ const { sendChat } = store
 
 const messages = ref([
   { position: "left", content: "Welcome to your personal GPT!" },
-  { position: "left", content: "To get started, simply type into the prompt below:" },
+  { position: "left", content: "I am built using a simple Open-Source GPT Model - EleutherAI/gpt-neo-125M, so I'm not very smart 😅" },
 ])
 
 const prompt = ref("")
@@ -40,20 +40,14 @@ const thinking = ref(false)
 const buttonDisable = ref(false)
 
 const onSendClick = async () => {
-  console.log("Parent got prompt:", prompt.value)
-  messages.value.push({ position: "right", content: prompt.value })
-  
-  const chatResponse = await sendChat(prompt.value)
-  console.log('chatResponse: ', chatResponse)
-  prompt.value = ""
   buttonDisable.value = true
-
-  await new Promise((resolve) => setTimeout(resolve, 1000))
+  messages.value.push({ position: "right", content: prompt.value })
+  var tempValue = prompt.value
+  prompt.value = ""
   thinking.value = true
+  const chatResponse = await sendChat(tempValue)
   await new Promise((resolve) => setTimeout(resolve, 2000))
-  
-  messages.value.push({ position: "left", content: 'This is an example response!' })
-
+  messages.value.push({ position: "left", content: chatResponse })
   thinking.value = false
   buttonDisable.value = false
 }
