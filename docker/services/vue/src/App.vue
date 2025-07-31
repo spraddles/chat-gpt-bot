@@ -1,12 +1,29 @@
-<script setup></script>
-
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
-  <Input placeholder="Ask anything" />
+  <div class="flex flex-col min-h-screen">
+
+    <main class="flex-1 overflow-auto p-6">
+    <p>Welcome to your personal GPT!</p>
+    <p>To get started, simply type into the prompt below:</p>
+      <Thinking :active="false" />
+    </main>
+
+    <div class="sticky bottom-0 bg-white p-4">
+      <Input
+        placeholder="Ask anything..."
+        button-text="Send"
+        class="w-full"
+      />
+    </div>
+  </div>
 </template>
 
-<style scoped></style>
+<script setup>
+import { ref } from 'vue'
+const messages = ref([])
+</script>
+
+<style scoped>
+p {
+  margin: 0;
+}
+</style>
