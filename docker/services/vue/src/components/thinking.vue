@@ -17,7 +17,10 @@ const props = defineProps({
 
 <style scoped>
 .typing-indicator {
-  display: inline-flex;
+  margin-top: 8px;
+  height: 38px;
+  width: 80px;
+  display: flex;
   align-items: center;
   background-color: #e5e5ea;
   padding: 12px 16px;

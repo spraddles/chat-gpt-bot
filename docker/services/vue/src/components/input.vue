@@ -6,7 +6,7 @@
       <input
         :id="id"
         type="text"
-        :value="modelValue"
+        :value="modelValue" 
         @input="$emit('update:modelValue', $event.target.value)"
         :placeholder="placeholder"
         class="w-full p-2 focus:ring-2 focus:ring-indigo-500 placeholder-gray-400"
@@ -15,9 +15,10 @@
 
     <!-- Right column: button -->
     <div>
-      <Button
+      <Button 
         text="Send"
         @click="$emit('button-click')"
+        :disabled="buttonDisable"
       >
         {{ props.buttonText }}
       </Button>
@@ -33,10 +34,9 @@ const props = defineProps({
     default: () => `text-input-${Math.random().toString(36).substr(2, 9)}`
   },
   placeholder: { type: String, default: '' },
-  buttonText: { type: String, default: 'Button' }
+  buttonText: { type: String, default: 'Button' },
+  buttonDisable: { type: Boolean, default: false }
 });
-
-const emit = defineEmits(['update:modelValue', 'button-click']);
 </script>
 
 <style type="css" scoped>

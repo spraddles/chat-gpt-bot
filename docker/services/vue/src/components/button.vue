@@ -2,7 +2,6 @@
   <button
     :type="type"
     :disabled="props.disabled"
-    @click="$emit('click')"
     :class="[
       'rounded-md font-medium transition px-4 py-2 cursor-pointer',
       props.disabled
@@ -29,8 +28,6 @@ const props = defineProps({
     default: false,
   },
 })
-
-const emit = defineEmits(['click'])
 </script>
 
 <style scoped>
