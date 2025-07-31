@@ -4,16 +4,17 @@ from .model import tokenizer, model
 import torch
 
 router = APIRouter()
+INSTRUCTION = (
+    "You are a helpful assistant. Answer the question concisely and factually.\n"
+)
 
 @router.post("/chat", response_model=ChatResponse)
 def chat(req: ChatRequest):
-
-    # tokenize
-    inputs = tokenizer(req.prompt, return_tensors="pt")
+    prompt = (INSTRUCTION + req.prompt.strip()).strip()
+    inputs = tokenizer(prompt, return_tensors="pt")
     if torch.cuda.is_available():
         inputs = {k: v.cuda() for k, v in inputs.items()}
 
-    # generate
     try:
         outputs = model.generate(
             **inputs,
@@ -21,13 +22,14 @@ def chat(req: ChatRequest):
             do_sample=True,
             temperature=req.temperature,
             top_p=req.top_p,
-            pad_token_id=tokenizer.eos_token_id,
+            repetition_penalty=1.2,
+            no_repeat_ngram_size=2,
+            eos_token_id=tokenizer.eos_token_id,
+            pad_token_id=tokenizer.eos_token_id
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
     decoded = tokenizer.decode(outputs[0], skip_special_tokens=True)
-
-    # only return the new content after the prompt
-    response_text = decoded[len(req.prompt):].strip()
-    return ChatResponse(response=response_text)
+    answer = decoded[len(prompt):].strip()
+    return ChatResponse(response=answer)
