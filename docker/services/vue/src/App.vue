@@ -2,9 +2,10 @@
   <div class="flex flex-col min-h-screen">
 
     <main class="flex-1 overflow-auto p-6">
-    <p>Welcome to your personal GPT!</p>
-    <p>To get started, simply type into the prompt below:</p>
-      <Thinking :active="false" />
+        <div v-for="(message, messageIndex) in messages" :key="messageIndex">
+            <Message :content="message.content" :position="message.position" />
+        </div>
+        <Thinking :active="false" />
     </main>
 
     <div class="sticky bottom-0 bg-white p-4">
@@ -19,7 +20,10 @@
 
 <script setup>
 import { ref } from 'vue'
-const messages = ref([])
+const messages = ref([
+    { position: 'left', content: 'Welcome to your personal GPT!' },
+    { position: 'left', content: 'To get started, simply type into the prompt below:' },
+])
 </script>
 
 <style scoped>
