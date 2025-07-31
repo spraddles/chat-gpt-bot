@@ -23,6 +23,7 @@ lerna-debug.log*
 .DS_Store
 
 # --- Editors / IDEs ---
+.vscode
 .vscode/*
 !.vscode/extensions.json
 .idea/
